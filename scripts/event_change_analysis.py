@@ -28,12 +28,10 @@ class EventChangeAnalyzer:
     - price_data (pd.DataFrame): DataFrame with 'Date' as index and 'Price' column.
     - logger (logging.Logger): Logger instance for logging messages, warnings, and errors.
     """
-    
-    def __init__(self, price_data, logger=None):
+    def __init__(self, price_data):
         self.price_data = price_data
-        self.logger = logger
-        self.mean_price = self.price_data['Price'].mean()
-        
+        self.mean_price = price_data['Price'].mean()
+        self.logger = logging.getLogger(__name__)         
         
     def calculate_cusum(self):
         """Calculates and plots the CUSUM of deviations from the mean price."""
@@ -46,9 +44,13 @@ class EventChangeAnalyzer:
             plt.legend()
             plt.grid()
             plt.show()
-            self.logger.info("CUSUM plot created successfully.")
+            if self.logger:  # Check if logger exists
+                self.logger.info("CUSUM plot created successfully.")
         except Exception as e:
-            self.logger.error("Error calculating or plotting CUSUM: %s", e)
+            if self.logger:  # Check if logger exists
+                self.logger.error("Error calculating or plotting CUSUM: %s", e)
+            else:
+                print(f"Error (logging not initialized): {e}")  # Fallback
     
     def detect_change_point(self, n_bkps=5):
         """Detects change points using the CUSUM-based method from the ruptures package."""
