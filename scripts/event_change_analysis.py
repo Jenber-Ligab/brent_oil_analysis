@@ -94,35 +94,38 @@ class EventChangeAnalyzer:
         try:
             data = self.price_data['Price'].values
             prior_mu = np.mean(data)
-            
+    
             with pm.Model() as model:
                 change_point = pm.DiscreteUniform('change_point', lower=0, upper=len(data) - 1)
                 mu1 = pm.Normal('mu1', mu=prior_mu, sigma=5)
                 mu2 = pm.Normal('mu2', mu=prior_mu, sigma=5)
                 sigma1 = pm.HalfNormal('sigma1', sigma=5)
                 sigma2 = pm.HalfNormal('sigma2', sigma=5)
-                
-                likelihood = pm.Normal(
-                    'likelihood',
-                    mu=pm.math.switch(change_point >= np.arange(len(data)), mu1, mu2),
-                    sigma=pm.math.switch(change_point >= np.arange(len(data)), sigma1, sigma2),
-                    observed=data
-                )
-                
-                trace = pm.sample(4000, tune=2000, chains=4, random_seed=42)
+    
+                # Corrected way to define piecewise mean and sigma
+                idx = np.arange(len(data))  # Indices
+                mu = pm.Deterministic("mu", pm.math.switch(idx < change_point, mu1, mu2))
+                sigma = pm.Deterministic("sigma", pm.math.switch(idx < change_point, sigma1, sigma2))
+    
+                pm.Normal('likelihood', mu=mu, sigma=sigma, observed=data)
+    
+                trace = pm.sample(2000, tune=1000, chains=4, random_seed=42)
                 self.logger.info("Bayesian sampling completed successfully.")
-                
+    
+                # Plot trace
                 az.plot_trace(trace)
                 plt.show()
-                
+    
+                # Extracting change point estimate
                 s_posterior = trace.posterior['change_point'].values.flatten()
                 change_point_estimate = int(np.median(s_posterior))
                 change_point_date = self.price_data.index[change_point_estimate]
-                
+    
                 print(f"Estimated Change Point Date: {change_point_date}")
                 self.logger.info("Estimated change point date: %s", change_point_date)
-                
+    
                 return change_point_date
+    
         except Exception as e:
             self.logger.error("Error in Bayesian change point analysis: %s", e)
     
