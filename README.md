@@ -43,7 +43,8 @@ Additional data sources (e.g., economic indicators, exchange rates) may be integ
 |   |-- test_data_preprocessor.py  # Model results and forecasts
 |-- .gitignore          
 |-- README.md                      # This file
-|-- requirements.txt  ```             # Python dependencies
+|-- requirements.txt            # Python dependencies
+```
 ## Methodology
 The analysis follows a structured workflow adapted from Task 1, with a focus on applying statistical and econometric models to Brent oil price data. Below is an overview of the approach:
 
