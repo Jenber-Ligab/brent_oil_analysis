@@ -52,39 +52,48 @@ The analysis follows a structured workflow adapted from Task 1, with a focus on 
 + Load and clean the Brent oil price dataset.
 + Handle missing values and anomalies.
 + Convert dates to a datetime format for time series analysis.
-**1. Exploratory Data Analysis (EDA)**
+  
+**2. Exploratory Data Analysis (EDA)**
 + Visualize price trends, volatility, and seasonality using plots (e.g., time series, rolling averages).
 + Perform statistical tests (e.g., ADF test) to assess stationarity.
-**2. Event Identification**
+  
+**3. Event Identification**
 + Compile a list of significant events (e.g., geopolitical conflicts, sanctions, OPEC decisions) from the past decade.
 + Create a timeline aligning events with price data.
-**3. Change Point Analysis**
+  
+**4. Change Point Analysis**
 + Use Bayesian Change Point Detection (via PyMC3) to identify significant shifts in price behavior.
 + Apply statistical tests (e.g., Pettitt test) to confirm change points.
 + Visualize change points alongside events.
-**4. Modeling Event Impact**
+  
+**5. Modeling Event Impact**
 + Event Window Analysis: Calculate price changes around event dates.
 + Regression Analysis: Use dummy variables to quantify event impacts.
 + Time Series Models: Implement ARIMA and GARCH with event exogenous variables.
 + Advanced Models: Explore VAR for multivariate analysis if additional data is included.
-**5. Incorporating Additional Factors**
+
+**6. Incorporating Additional Factors**
 + Analyze the influence of:
 + Economic Indicators: GDP growth, inflation, unemployment.
 + Exchange Rates: USD fluctuations.
 + Technological Changes: Extraction advancements, renewable energy growth.
 + Political Factors: Regulations, trade policies.
 + Integrate these variables into models where applicable.
-**6. Model Validation**
+
+**7. Model Validation**
 + Backtest models on historical data.
 + Perform out-of-sample testing and time series cross-validation.
 + Evaluate performance using metrics like RMSE, MAE, and R-squared.
-**7. Insight Generation**
+
+**8. Insight Generation**
 + Summarize event impacts and rank their significance.
 + Provide price forecasts with confidence intervals.
 + Offer recommendations for stakeholders.
+  
 **Dependencies**
 To run the code, install the required Python packages listed in requirements.txt:
 ```pip install -r requirements.txt```
+
 **Key libraries include:**
 
 pandas, numpy: Data manipulation.
@@ -92,12 +101,14 @@ matplotlib, seaborn: Visualization.
 pymc3: Bayesian modeling.
 statsmodels: Time series and regression analysis.
 scikit-learn: Model evaluation.
+
 **How to Run the Code**
 Clone the Repository:
 ```git clone https://github.com/your-username/Brent-Oil-Price-Analysis.git```
 cd Brent-Oil-Price-Analysis
 Install Dependencies:```
 pip install -r requirements.txt```
+
 **Prepare the Data:**
 Place brent_oil_prices.csv in the /data folder or load from google drive.
 Run the Analysis:
