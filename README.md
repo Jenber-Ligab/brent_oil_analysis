@@ -104,10 +104,13 @@ scikit-learn: Model evaluation.
 
 **How to Run the Code**
 Clone the Repository:
+
 ```git clone https://github.com/your-username/Brent-Oil-Price-Analysis.git```
+
 cd Brent-Oil-Price-Analysis
-Install Dependencies:```
-pip install -r requirements.txt```
+Install Dependencies:
+
+```pip install -r requirements.txt```
 
 **Prepare the Data:**
 Place brent_oil_prices.csv in the /data folder or load from google drive.
@@ -116,10 +119,22 @@ Execute the Jupyter notebooks in /notebooks sequentially:
 
 ## Preliminary findings include:
 
-Identification of key events (e.g., 2014 oil price crash due to OPEC decisions).
-Quantification of price changes (e.g., percentage drops or spikes post-event).
-Visualizations showing price volatility and change points aligned with events.
-Detailed results are available in the /results folder and the accompanying notebooks.
+Based on the previous analysis on detecting the change points the following key events are identified that were impacted oil prices
+
+1999
+Russian Financial Crisis: The Russian default on its debt and devaluation of the ruble in 1998 led to a sharp drop in oil prices, but by 1999, the recovery began as oil demand increased, particularly from Asia.
+
+2005
+Hurricane Katrina: This devastating hurricane struck the Gulf Coast of the United States in August 2005, causing significant disruptions to oil production and refining capacity, leading to a spike in oil prices.
+
+2010
+Arab Spring: The wave of protests and uprisings across the Arab world began in late 2010, leading to political instability in key oil-producing countries such as Libya and Egypt, which drove up Brent oil prices.
+
+2014
+Oil Price Crash: In mid-2014, Brent oil prices began to decline sharply due to oversupply in the market, driven by increased production from the U.S. shale oil boom and OPEC's decision not to cut output.
+
+2021
+COVID-19 Pandemic Recovery: As global economies began to reopen following lockdowns, demand for oil surged, contributing to significant price increases in 2021. Additionally, OPEC+ production cuts played a role in driving prices higher.
 
 ## Future Work
 Extend the analysis to other commodities (e.g., natural gas).
@@ -135,4 +150,5 @@ License
 For questions or feedback, reach out via:
 
 GitHub: [[Jenber-Ligab](https://github.com/your-username/Brent-Oil-Price-Analysis.git)]
+
 Email: [jenberligab@gmail.com]
